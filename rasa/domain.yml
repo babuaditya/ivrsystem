@@ -1,0 +1,60 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - courses
+  - my_name_is
+  - ask_apply_online
+  - ask_placements
+  - inquire_faculty
+  - inquire_scholarships
+
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa Developed By Aditya."
+
+  utter_courses:
+  - text: "Nutan College Of Engineering and Research offers industry-oriented professional programs in Engineering,and many more with the lowest course fee as compared to other universities in the region. For more information visit our official site 'https://www.ncerpune.in'"
+
+  utter_my_name_is:
+  - text: "Nice to meet you {person}" 
+
+  utter_ask_apply_online:
+  - text: "Nutan College Of Engineering and Research provides offline as well as online admission procedure. Online admission procedure focuses on MHCET examination. Apply Now on 'https://www.ncerpune.in'"
+
+  utter_ask_placements:
+  - text: "Highest Package in 2021-22 Engineering - ₹36 Lakh Per Annum. Campus placement is 100% because there are mass recruiters who recruit at a moderate LPA but apart from this there are many companies like Google, Facebook, and Amazon that higher at a very good package.'"
+  utter_branches:
+  - text: "Nutan College Of Engineering and Research provides Engineering in Computer Science and Engineering, Mechanical Engineering, Electronic and Tele-communication"
+  
+  utter_provide_scholarship_info:
+  - text: "he fee is the same for all the upcoming years mostly there's a hike of 1k or 2k. Also, there is a 50% fee return policy for state students by the government, and caste wise the percentage of return gets higher."
+  
+  utter_provide_faculty_info:
+  - text: "Dr. Aparna Pande, serving as the Principal, possesses a PhD along with a Master's in Computer Science and Engineering (ME CSE) and a Bachelor's in Computer Science and Engineering (BE CSE). She brings a wealth of experience, accumulating a total of 20 years in the field of undergraduate education.Mr. Premkumar V. Kolle is an Assistant Professor with a qualification of M.Sc., B.Ed. (Maths), and is currently pursuing his PhD. He holds a total of 5 years of undergraduate teaching experience."
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
