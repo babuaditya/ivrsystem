@@ -1,0 +1,40 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $recipient = $ARGV[0];
+
+my $url = 'https://messages-sandbox.nexmo.com/v1/messages';
+my $token = '72482766:H7hFq1ddmH39bEpr';
+my $from = '14157386102';
+my $file_url = 'https://www.ncerpune.in/pdf/NCER-Brochure-Final.pdf';
+my $caption = 'NCER Brochure';
+
+my $json_data = '{
+    "from": "' . $from . '",
+    "to": "' . $recipient . '",
+    "message_type": "file",
+    "file": {
+        "url": "' . $file_url . '",
+        "caption": "' . $caption . '"
+    },
+    "channel": "whatsapp"
+}';
+
+my $ua = LWP::UserAgent->new;
+my $req = HTTP::Request->new(POST => $url);
+$req->authorization_basic($token);
+$req->header('Content-Type' => 'application/json');
+$req->header('Accept' => 'application/json');
+$req->content($json_data);
+
+my $res = $ua->request($req);
+if ($res->is_success) {
+    print "Message sent successfully!\n";
+} else {
+    print "Error: " . $res->status_line . "\n";
+}

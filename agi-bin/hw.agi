@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+import os
+import sys
+import time
+import requests
+
+result = "Aditya"
+rasa_server_url = 'http://Localhost:5005/webhooks/rest/webhook'
+payload = {
+        "sender": "user",
+        "message": sys.argv[1]
+    }
+response = requests.post(rasa_server_url, json=payload)
+rasa_response = response.json()
+ans=rasa_response[0]['text'].replace(' ','\ ')
+ans=ans.replace(',','\ ')
+print(ans)
+print(f"SET VARIABLE AGI_RESULT {ans}")
+if sys.argv[1]=='stop' or '':
+  print(f"SET VARIABLE loop_counter 5")
+time.sleep(0)

@@ -1,0 +1,42 @@
+#!/usr/bin/php -q
+<?php
+require('phpagi.php');
+$agi = new AGI();
+// Retrieve data from the AGI environment if necessary
+$name = $argv[1];
+$prnNo =$argv[2];
+$number =$argv[3]; 
+// Database connection parameters
+$dbhost = 'aws rds host ';
+$dbname = 'aws rds dbname ';
+$dbuser = 'aws rds user ';
+$dbpass = 'aws rds password ';
+try {
+    // Connect to the MySQL database
+    $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Prepare SQL INSERT statement
+    $stmt = $dbh->prepare("INSERT INTO fees (Name, PRNNO, Number) VALUES (:name, :prnNo, :number)");
+
+    // Bind parameters
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':prnNo', $prnNo);
+    $stmt->bindParam(':number', $number);
+
+    // Execute the SQL INSERT statement
+    $stmt->execute();
+
+    // Close the database connection
+    $dbh = null;
+
+    // Print success message
+    $agi->verbose("Data saved successfully.");
+
+} catch (PDOException $e) {
+    // Handle database errors
+    $agi->verbose("Database error: " . $e->getMessage());
+}
+
+?>
+
